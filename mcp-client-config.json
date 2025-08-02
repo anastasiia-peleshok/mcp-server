@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "bookstore-server": {
+      "command": "http",
+      "args": {
+        "url": "http://localhost:8080/mcp/stream"
+      },
+      "env": {}
+    }
+  }
+} 

@@ -3,6 +3,7 @@ package com.example.mcp.controller;
 import com.example.mcp.dto.mcp.McpRequest;
 import com.example.mcp.dto.mcp.McpResponse;
 import com.example.mcp.dto.mcp.McpTool;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -170,7 +171,8 @@ public class McpController {
             
             log.info("Calling tool with JSON arguments: {}", argumentsJson);
             Object result = tool.get().call(argumentsJson);
-            response.setResult(result);
+            JsonNode resultNode = objectMapper.readTree(result.toString());
+            response.setResult(resultNode);
             
         } catch (Exception e) {
             log.error("Error calling tool: {}", toolName, e);

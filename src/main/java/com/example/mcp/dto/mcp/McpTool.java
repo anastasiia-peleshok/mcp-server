@@ -8,5 +8,5 @@ import java.util.Map;
 public class McpTool {
     private String name;
     private String description;
-    private String inputSchema;
+    private Object inputSchema;
 } 

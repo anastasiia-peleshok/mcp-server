@@ -66,9 +66,10 @@ public class AuthorServiceImpl implements AuthorService {
     public Author addBookToAuthor(Long authorId, Long bookId) {
         Author author = authorRepository.findById(authorId).orElseThrow(() -> new RuntimeException("Author Not Found"));
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book Not Found"));
-        
+
         author.getBooks().add(book);
-        return authorRepository.save(author);
+        book.getAuthors().add(author);
+        return author;
     }
 
     @Override
@@ -76,8 +77,9 @@ public class AuthorServiceImpl implements AuthorService {
     public Author removeBookFromAuthor(Long authorId, Long bookId) {
         Author author = authorRepository.findById(authorId).orElseThrow(() -> new RuntimeException("Author Not Found"));
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book Not Found"));
-        
+
         author.getBooks().remove(book);
-        return authorRepository.save(author);
+        book.getAuthors().remove(author);
+        return author;
     }
 }
